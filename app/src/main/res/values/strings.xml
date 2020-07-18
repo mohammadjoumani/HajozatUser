@@ -1,0 +1,49 @@
+<resources>
+    <string name="app_name">HajozatUser</string>
+    <string name="hajozat">Hajozat</string>
+    <string name="slogan1">
+        <br>Deploy your hotels and rooms \n</br>
+        <br>manage them \n</br>
+        <br>make sure your rooms and hotels \n</br>
+        <br>New experince \n</br>
+    </string>
+    <string name="singin"> Sing In</string>
+    <string name="singup">Sing UP</string>
+    <string name="name">Name</string>
+    <string name="password">Password</string>
+    <string name="email">Email</string>
+    <string name="number">Number</string>
+    <string name="gotohome">Go to home</string>
+    <string name="chosecountry">Chose Country</string>
+    <string name="profile">Profile</string>
+    <string name="favourite">Favourite</string>
+    <string name="history">History</string>
+    <string name="about">About</string>
+    <string name="title_activity_home">Home</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_desc">Navigation header</string>
+
+    <string name="menu_home">Home</string>
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+
+    <string name="home_second">Home Second</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="about_text">
+        <br> This application helps \n </br>
+        <br> to search for hotels \n</br>
+        <br>within the region in \n</br>
+        <br>which they are located \n</br>
+        <br>It also allows you to \n</br>
+        <br>search for the best \n</br>
+        <br>specifications \n</br>
+
+    </string>
+    <string name="reservation"> Reservation</string>
+
+</resources>
+

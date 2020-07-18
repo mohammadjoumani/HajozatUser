@@ -1,0 +1,229 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Details_hotel"
+    android:background="@drawable/background">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv_slider_mainActivity"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            app:cardCornerRadius="4dp"
+            tools:ignore="MissingConstraints">
+
+            <com.smarteist.autoimageslider.SliderView
+                android:id="@+id/imageSlider"
+                android:layout_width="match_parent"
+                android:layout_height="250dp"
+                app:sliderAnimationDuration="600"
+                app:sliderAutoCycleDirection="back_and_forth"
+                app:sliderIndicatorAnimationDuration="600"
+                app:sliderIndicatorEnabled="true"
+                app:sliderIndicatorGravity="center_horizontal|bottom"
+                app:sliderIndicatorMargin="15dp"
+                app:sliderIndicatorOrientation="horizontal"
+                app:sliderIndicatorPadding="3dp"
+                app:sliderIndicatorRadius="2dp"
+                app:sliderIndicatorSelectedColor="#5A5A5A"
+                app:sliderIndicatorUnselectedColor="#FFF"
+                app:sliderScrollTimeInSec="1" />
+            <ImageButton
+                android:id="@+id/imageButton"
+                android:layout_width="48dp"
+                android:layout_height="48dp"
+                app:srcCompat="@drawable/backward"
+                tools:ignore="VectorDrawableCompat"
+                />
+
+        </androidx.cardview.widget.CardView>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="120dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="4dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="2dp"
+                android:layout_marginTop="2dp">
+
+                <TextView
+                    android:id="@+id/name_hotel_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Seraton Hotel"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp" />
+
+                <RatingBar
+                    android:id="@+id/hotel_rating_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentLeft="true"
+                    android:layout_alignParentBottom="true"
+                    android:layout_marginLeft="-45dp"
+                    android:layout_marginBottom="1dp"
+                    android:isIndicator="true"
+                    android:max="5"
+                    android:rating="4"
+                    android:scaleX="0.5"
+                    android:scaleY="0.5"
+                    android:theme="@style/RatingBar" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="340dp"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="4dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
+                android:background="@color/colorPrimary">
+
+                <TextView
+                    android:id="@+id/hotel_city_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="City :"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp" />
+                <TextView
+                    android:id="@+id/hotel_city_detail1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="City"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_toRightOf="@id/hotel_city_detail"/>
+                <TextView
+                    android:id="@+id/brand_name_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Brand :"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_below="@id/hotel_city_detail"/>
+                <TextView
+                    android:id="@+id/brand_name_detail1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Brand "
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_toRightOf="@id/brand_name_detail"
+                    android:layout_below="@id/hotel_city_detail1"/>
+
+                <TextView
+                    android:id="@+id/star_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Star :"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_below="@id/brand_name_detail"/>
+                <TextView
+                    android:id="@+id/star_detail1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Star "
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_toRightOf="@id/star_detail"
+                    android:layout_below="@id/brand_name_detail"/>
+                <TextView
+                    android:id="@+id/location_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Location :"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_below="@id/star_detail"/>
+                <TextView
+                    android:id="@+id/location_detail1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Location"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_toRightOf="@id/location_detail"
+                    android:layout_below="@id/star_detail"/>
+                <TextView
+                    android:id="@+id/room_number_detail"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Room Number :"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_below="@id/location_detail"/>
+                <TextView
+                    android:id="@+id/room_number_detail1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Room Number"
+                    android:textColor="@android:color/white"
+                    android:textSize="36sp"
+                    android:layout_toRightOf="@id/room_number_detail"
+                    android:layout_below="@id/location_detail"/>
+
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorPrimary"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:layout_marginBottom="4dp"
+                android:layout_marginTop="4dp">
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/qqqqqq"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="12dp"
+                android:background="@drawable/btn_shap_singup"
+                android:text="@string/reservation"
+                android:textAllCaps="true"
+                android:textColor="@color/colorPrimary" />
+
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

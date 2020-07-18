@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    package="com.example.hajozatuser">
+
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@drawable/hh"
+        android:label="@string/app_name"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme"
+        android:usesCleartextTraffic="true"
+        app:srcCompat="@mipmap/ic_launcher">
+        <activity android:name=".image_slider_layout_item"></activity>
+        <activity android:name=".Profile" />
+        <activity android:name=".Details_hotel" />
+        <activity android:name=".list_item" />
+        <activity android:name=".favourite" />
+        <activity android:name=".History" />
+        <activity android:name=".About" />
+        <activity
+            android:name=".Home"
+            android:label=" Home"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".singup" />
+        <activity android:name=".singin" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+    </application>
+
+</manifest>
