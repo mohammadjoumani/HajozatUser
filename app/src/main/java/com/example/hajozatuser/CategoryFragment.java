@@ -1,5 +1,6 @@
 package com.example.hajozatuser;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -12,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.Toast;
 
@@ -30,7 +32,8 @@ import retrofit2.Response;
 public class CategoryFragment extends Fragment {
     private ApiInterafce Api;
     private ListView listView;
-    private List<Hotels> hotelList;
+    private List<Hotels> hotelList1;
+    private List<Hotels> hotelList2;
     private HotelsAdpter adapter;
 
     private static final String ARG_ID = "id";
@@ -73,14 +76,17 @@ public class CategoryFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated( view, savedInstanceState );
 
+        listView = view.findViewById( R.id.list_view );
+
         if (id == 1) {
-            listView = view.findViewById( R.id.list_view );
+
             getHotelsData( listView );
+
             listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
                 @Override
                 public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
                     // common.o=null;
-                    Common.o = hotelList.get( i );
+                    Common.o = hotelList1.get( i );
                     startActivity( new Intent( getActivity(), Details_hotel.class ) );
 
                     //getActivity().finish();// for finsh this activity and go to activity home
@@ -88,7 +94,9 @@ public class CategoryFragment extends Fragment {
             } );
 
         } else if (id == 2) {
-            // adapter = new ArrayAdapter<>( getActivity(), android.R.layout.simple_list_item_1, mm );
+            getHotelsData( listView );
+            hotelList2=hotelList1;
+            adapter = new HotelsAdpter( getActivity().getApplicationContext(), hotelList2 );
         }
 
 
@@ -102,10 +110,10 @@ public class CategoryFragment extends Fragment {
             @Override
             public void onResponse(Call<List<Hotels>> call, Response<List<Hotels>> response) {
 
-                hotelList = response.body();
-                adapter = new HotelsAdpter( getActivity().getApplicationContext(), hotelList );
+                hotelList1 = response.body();
+                adapter = new HotelsAdpter( getActivity().getApplicationContext(), hotelList1 );
                 listView.setAdapter( adapter );
-                Log.d( "second", String.valueOf( hotelList.size() ) );
+                Log.d( "second", String.valueOf( hotelList1.size() ) );
             }
 
             @Override
@@ -113,5 +121,6 @@ public class CategoryFragment extends Fragment {
 
             }
         } );
+
     }
 }

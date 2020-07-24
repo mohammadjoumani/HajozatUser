@@ -14,7 +14,7 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true"
         app:srcCompat="@mipmap/ic_launcher">
-        <activity android:name=".image_slider_layout_item"></activity>
+        <activity android:name=".Share"></activity>
         <activity android:name=".Profile" />
         <activity android:name=".Details_hotel" />
         <activity android:name=".list_item" />

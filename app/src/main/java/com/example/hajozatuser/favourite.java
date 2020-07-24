@@ -31,6 +31,8 @@ public class favourite extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_favourite );
+
+        //for backWord
         ImageView image_back = (ImageView) findViewById( R.id.imgeview_backfav );
 
         image_back.setOnClickListener( new View.OnClickListener() {
@@ -40,16 +42,16 @@ public class favourite extends AppCompatActivity {
                 finish();
             }
         } );
+
         listView = findViewById( R.id.listfav );
         RetrofitCient retrofitCient = RetrofitCient.getINSTANCE();
         Api = retrofitCient.Api;
-        Api.getHotels( Common.getToken() ).enqueue( new Callback<List<Hotels>>() {
+        Api.getHotelsFav( Common.getToken(),Common.user.getId() ).enqueue( new Callback<List<Hotels>>() {
             @Override
             public void onResponse(Call<List<Hotels>> call, Response<List<Hotels>> response) {
                 hotelList = response.body();
                 adapter = new HotelsAdpter( getApplicationContext(), hotelList );
                 listView.setAdapter( adapter );
-                Log.d( "second", String.valueOf( hotelList.size() ) );
             }
 
             @Override

@@ -21,8 +21,6 @@ public class Common {
 
     public static User user;
     public static Hotels o;
-    public static SlideItem slid;
-
 
     public static boolean isConnectionToInternet(Context context) {
 

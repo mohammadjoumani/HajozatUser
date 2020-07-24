@@ -34,23 +34,41 @@ public interface ApiInterafce {
     @GET("getUserHotels.php")
     public Call<List<Hotels>> getHotels(@Header("Authorization") String token);
 
+    // for show Hotels favourite
+    @POST("getUserFavourite.php")
+    public Call<List<Hotels>> getHotelsFav(@Header("Authorization") String token,@Field("User_Id") int id);
+
+    // for show Hotels history
+    @POST("getUserHistory.php")
+    public Call<List<Hotels>> getHotelsHis(@Header("Authorization") String token , @Field("User_Id") int id);
+
     // for show Top star Hotels
     @GET("getUserTopRatedHotels.php")
     public Call<List<Hotels>> getTopHotels(@Header("Authorization") String token);
 
+    // for facility hotel
     @POST("UserHotelDetailsFacility.php")
-    public Call<List<Facility>> getHotelDetailsFacility(@Header("Authorization") String token,@Field( "Id" ) String id);
+    public Call<List<Facility>> getHotelDetailsFacility(@Header("Authorization") String token, @Field("Id") String id);
 
+     // for get image for hotel and  put it in imageSlider in activity Detail_hotel
     @FormUrlEncoded
     @POST("UserHotelDetailsImages.php")
-    public Call<List<SlideItem>> getHotelDetailsImage(@Header("Authorization") String token, @Field( "Id" ) String id);
+    public Call<List<SlideItem>> getHotelDetailsImage(@Header("Authorization") String token, @Field("Id") String id);
 
+    // for get Rules hotels
     @FormUrlEncoded
     @POST("UserHotelDetailsRules.php")
-    public Call<List<Rules>> getHotelDetailsRules(@Header("Authorization") String token, @Field( "Id" ) String id);
+    public Call<List<Rules>> getHotelDetailsRules(@Header("Authorization") String token, @Field("Id") String id);
+     // for
+    @FormUrlEncoded
+    @POST("UserHotelDetailsType.php")
+    public Call<List<Type>> getHotelDetailsType(@Header("Authorization") String token, @Field("Id") String id);
 
     @FormUrlEncoded
-    @POST("UserHotelDetailsRules.php")
-    public Call<List<Type>> getHotelDetailsType(@Header("Authorization") String token, @Field( "Id" ) String id);
+    @POST("getUserHotelsSearch.php")
+    public Call<List<Hotels>> getHotelSearch(@Header("Authorization") String token, @Field("Name") String name);
 
+    @FormUrlEncoded
+    @POST("UserSendReport.php")
+    public Call<String> Sendreport(@Header("Authorization") String token, @Field("User_Id") String user_id,@Field("context") String context);
 }

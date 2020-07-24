@@ -1,10 +1,13 @@
 package com.example.hajozatuser;
 
+import android.app.Dialog;
 import android.content.Intent;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -12,7 +15,6 @@ import com.example.hajozatuser.Adapter.PagerAdapter;
 import com.example.hajozatuser.Common.Common;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
-import com.mikhaellopez.circularimageview.CircularImageView;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
@@ -24,6 +26,9 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
+import de.hdodenhof.circleimageview.CircleImageView;
+
+
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
     // var for show message when click button to back
@@ -33,16 +38,19 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     // for set Data user on fun getDataUser
     private AppBarConfiguration mAppBarConfiguration;
     private TextView txtEmailUser, txtNameUser;
-    CircularImageView imgUser;
+    CircleImageView imgUser;
     private TabLayout tabLayout;
     private ViewPager viewPager;
     private Toolbar toolbar;
+
+    Dialog myDailog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home );
+         Log.d("aa", String.valueOf(this));
         toolbar = (Toolbar) findViewById( R.id.toolbar ); // for toolbar
         setSupportActionBar( toolbar );
 
@@ -63,7 +71,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         View headerView = navigationView.getHeaderView( 0 );
         txtNameUser = (TextView) headerView.findViewById( R.id.nameuser );
         txtEmailUser = (TextView) headerView.findViewById( R.id.emailuser );
-        imgUser = (CircularImageView) headerView.findViewById( R.id.imguser );
+        imgUser = (CircleImageView) headerView.findViewById( R.id.imguser );
         getDataUser( txtNameUser, txtEmailUser, imgUser );
 
         //for create tab and fragments
@@ -147,7 +155,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     }
 
     // fun for get Data for user signin
-    private void getDataUser(TextView txtNameUser, TextView txtEmailUser, CircularImageView imgUser) {
+    public void getDataUser(TextView txtNameUser, TextView txtEmailUser, CircleImageView imgUser) {
         txtNameUser.setText( Common.user.getName() );
         txtEmailUser.setText( Common.user.getEmail() );
         if (Common.user.getImage_Path() != null) {
