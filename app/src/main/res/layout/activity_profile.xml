@@ -12,16 +12,18 @@
         android:layout_height="wrap_content"
         android:orientation="vertical">
 
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar_profile"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:theme="@style/AppTheme.AppBarOverlay"
+            tools:ignore="InvalidId">
+
+        </androidx.appcompat.widget.Toolbar>
+
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-            <ImageView
-                android:id="@+id/img_edit"
-                android:layout_width="36dp"
-                android:layout_height="36dp"
-                android:src="@drawable/edite"
-                android:layout_alignParentRight="true"
-                android:layout_margin="8dp"/>
 
             <LinearLayout
                 android:layout_width="wrap_content"
@@ -45,15 +47,15 @@
                     android:id="@+id/name_user"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="User Name"
                     android:layout_gravity="center"
-                    android:textSize="25sp"
-                    android:textColor="@android:color/white"
+                    android:background="@null"
                     android:enabled="false"
-                    android:background="@null"/>
+                    android:text="User Name"
+                    android:textColor="@android:color/white"
+                    android:textSize="25sp" />
+
 
             </LinearLayout>
-
 
 
         </RelativeLayout>
@@ -73,25 +75,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Email :"
-                    android:textSize="22sp"
+                    android:layout_marginStart="20sp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20sp"/>
+                    android:text="Email :"
+                    android:textSize="22sp" />
+
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Androidstudio@gamil.com"
-                    android:backgroundTint="@android:color/white"
-                    android:textSize="22sp"
-                    android:layout_marginLeft="20dp"
                     android:layout_marginStart="20sp"
-                    android:enabled="false"/>
+                    android:layout_marginLeft="20dp"
+                    android:backgroundTint="@android:color/white"
+                    android:enabled="false"
+                    android:text="Androidstudio@gamil.com"
+                    android:textSize="22sp" />
 
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -107,27 +111,27 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Password :"
-                    android:textSize="22sp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"/>
+                    android:text="Password :"
+                    android:textSize="22sp" />
 
                 <com.google.android.material.textfield.TextInputEditText
-                    android:id="@+id/user_password"                    android:layout_width="wrap_content"
+                    android:id="@+id/user_password"
+                    android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="000000000"
-                    android:inputType="textPassword"
-                    android:textSize="22sp"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="8dp"
+                    android:backgroundTint="@android:color/white"
                     android:enabled="false"
-                    android:backgroundTint="@android:color/white"/>
+                    android:inputType="textPassword"
+                    android:text="000000000"
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
-
 
 
         <androidx.cardview.widget.CardView
@@ -145,22 +149,22 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Phone Number :"
-                    android:textSize="22sp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"/>
+                    android:text="Phone Number :"
+                    android:textSize="22sp" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_phone"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0940741908"
-                    android:textSize="22sp"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="8dp"
+                    android:backgroundTint="@android:color/white"
                     android:enabled="false"
-                    android:backgroundTint="@android:color/white"/>
+                    android:text="0940741908"
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
@@ -181,22 +185,29 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Date:"
-                    android:textSize="22sp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"/>
+                    android:text="Date:"
+                    android:textSize="22sp" />
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/user_date"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1/1/2020"
-                    android:textSize="22sp"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginStart="40dp"
+                    android:layout_marginLeft="40dp"
                     android:layout_marginTop="8dp"
-                    android:enabled="false"
-                    android:backgroundTint="@android:color/white"/>
+                    android:backgroundTint="@android:color/white"
+                    android:inputType="date"
+                    android:text="1/1/2020"
+                    android:textSize="22sp" />
+
+                <EditText
+                    android:id="@+id/editTextDate"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:ems="10"
+                    android:inputType="date" />
 
             </LinearLayout>
 
@@ -217,24 +228,34 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Description :"
-                    android:textSize="22sp"
+                    android:layout_marginStart="20dp"
                     android:layout_marginLeft="20dp"
-                    android:layout_marginStart="20dp"/>
+                    android:text="Description :"
+                    android:textSize="22sp" />
 
                 <TextView
                     android:id="@+id/txtDescription"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="This company so happy with custommers..."
-                    android:textSize="22sp"
-                    android:layout_marginLeft="40dp"
                     android:layout_marginStart="40dp"
-                    android:layout_marginTop="8dp"/>
+                    android:layout_marginLeft="40dp"
+                    android:layout_marginTop="8dp"
+                    android:text="This company so happy with custommers..."
+                    android:textSize="22sp" />
 
             </LinearLayout>
 
         </androidx.cardview.widget.CardView>
+
+        <Button
+            android:id="@+id/save"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            android:background="@drawable/btn_shap_singn"
+            android:text="Save"
+            android:textAllCaps="true"
+            android:textColor="@android:color/white" />
 
     </LinearLayout>
 

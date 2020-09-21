@@ -3,8 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     package="com.example.hajozatuser">
 
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+
+    <uses-feature
+        android:glEsVersion="0x00020000"
+        android:required="true" />
 
     <application
         android:allowBackup="true"
@@ -12,12 +18,25 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true"
-        app:srcCompat="@mipmap/ic_launcher">
-        <activity android:name=".Share"></activity>
-        <activity android:name=".Profile" />
+        android:usesCleartextTraffic="true">
+        <activity android:name=".calendar"></activity>
+        <activity android:name=".maps" />
+        <activity android:name=".Comments" />
+        <activity android:name=".verify" />
+        <activity android:name=".topStar" />
+        <activity android:name=".moreDetail" />
+        <activity android:name=".Spalash">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name=".Profile"
+            android:icon="@drawable/back"
+            android:label=" Profile" />
         <activity android:name=".Details_hotel" />
-        <activity android:name=".list_item" />
         <activity android:name=".favourite" />
         <activity android:name=".History" />
         <activity android:name=".About" />
@@ -27,11 +46,18 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".singup" />
         <activity android:name=".singin" />
-        <activity android:name=".MainActivity">
+        <activity android:name=".MainActivity" />
+        <activity
+            android:name="com.esri.arcgisruntime.security.DefaultOAuthIntentReceiver"
+            android:label="OAuthIntentReceiver"
+            android:launchMode="singleTask">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+                <action android:name="android.intent.action.VIEW" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="hajozat" />
             </intent-filter>
         </activity>
     </application>

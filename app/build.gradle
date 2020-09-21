@@ -10,7 +10,7 @@ android {
 
     defaultConfig {
         applicationId "com.example.hajozatuser"
-        minSdkVersion 16
+        minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -57,4 +57,14 @@ dependencies {
     implementation 'com.squareup.picasso:picasso:2.71828'
     //smarteist
     implementation 'com.github.smarteist:autoimageslider:1.3.9-appcompat'
+    //Braintree for payment
+    implementation 'com.braintreepayments.api:drop-in:3.7.0'
+
+    //ArcGIS Map
+    implementation 'com.esri.arcgisruntime:arcgis-android:100.8.0'
+
+    implementation 'com.jaredrummler:material-spinner:1.3.1'
+
+
+
 }

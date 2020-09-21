@@ -2,11 +2,11 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/layout_singin"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@drawable/background"
-    tools:context=".sing_up">
-
+    tools:ignore="InvalidId">
 
     <TextView
         android:id="@+id/text_singin"
@@ -48,7 +48,7 @@
                 android:backgroundTint="@android:color/white"
                 android:hint="@string/email"
                 android:inputType="text"
-                android:text="mohammadjoumani@gmail.com"
+                android:text="gigi@gmail.com"
                 android:textColor="@android:color/white"
                 android:textColorHint="@android:color/white" />
 

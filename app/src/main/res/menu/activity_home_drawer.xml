@@ -4,13 +4,9 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/gotohome"
+            android:id="@+id/topHotels"
             android:icon="@drawable/ic_home_black_24dp"
-            android:title="@string/gotohome" />
-        <item
-            android:id="@+id/chosecountry"
-            android:icon="@drawable/ic_location"
-            android:title="@string/chosecountry" />
+            android:title="@string/topstar" />
         <item
             android:id="@+id/profile"
             android:icon="@drawable/ic_profile"

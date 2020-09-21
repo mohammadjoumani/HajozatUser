@@ -4,17 +4,21 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@drawable/background"
     android:orientation="vertical"
-    tools:context=".Details_hotel"
-    android:background="@drawable/background">
+    tools:context=".Details_hotel">
 
-        <androidx.cardview.widget.CardView
-            android:id="@+id/cv_slider_mainActivity"
+    <androidx.cardview.widget.CardView
+        android:id="@+id/cv_slider_mainActivity"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        app:cardCornerRadius="4dp"
+        tools:ignore="MissingConstraints">
+
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_alignParentTop="true"
-            app:cardCornerRadius="4dp"
-            tools:ignore="MissingConstraints">
+            android:layout_height="wrap_content">
 
             <com.smarteist.autoimageslider.SliderView
                 android:id="@+id/imageSlider"
@@ -32,15 +36,34 @@
                 app:sliderIndicatorSelectedColor="#5A5A5A"
                 app:sliderIndicatorUnselectedColor="#FFF"
                 app:sliderScrollTimeInSec="1" />
+
             <ImageView
                 android:id="@+id/imageButton"
-                android:layout_width="48dp"
-                android:layout_height="48dp"
+                android:layout_width="36dp"
+                android:layout_height="32dp"
+                android:background="@drawable/btn_shap_ver"
                 app:srcCompat="@drawable/backward"
-                tools:ignore="VectorDrawableCompat"
-                />
+                tools:ignore="VectorDrawableCompat" />
 
-        </androidx.cardview.widget.CardView>
+            <ImageView
+                android:id="@+id/loveOrunlove"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_alignParentRight="true"
+                android:layout_margin="4dp"
+                app:srcCompat="@drawable/ic_baseline_add_circle_24"
+                tools:ignore="VectorDrawableCompat" />
+            <ImageView
+                android:id="@+id/Share"
+                android:layout_width="36dp"
+                android:layout_height="36dp"
+                android:layout_toLeftOf="@id/loveOrunlove"
+                android:layout_margin="4dp"
+                app:srcCompat="@drawable/share"
+                tools:ignore="VectorDrawableCompat" />
+        </RelativeLayout>
+
+    </androidx.cardview.widget.CardView>
 
     <ScrollView
         android:layout_width="match_parent"
@@ -50,18 +73,19 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
+
             <RelativeLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/ground_details"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp">
+                android:background="@drawable/ground_details">
 
                 <TextView
-                    android:id="@+id/name_hotel_detail"
+                    android:id="@+id/name_hotel_detail11"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_margin="8dp"
@@ -74,7 +98,7 @@
                     android:id="@+id/hotel_rating_detail"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/name_hotel_detail"
+                    android:layout_below="@id/name_hotel_detail11"
                     android:layout_marginLeft="-45dp"
                     android:layout_marginBottom="1dp"
                     android:isIndicator="true"
@@ -89,9 +113,9 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp"
                 android:background="@drawable/ground_details">
 
                 <TextView
@@ -207,28 +231,103 @@
                     android:textColor="@android:color/white"
                     android:textSize="22sp" />
 
-
             </RelativeLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@drawable/ground_details"
+                android:layout_height="wrap_content"
                 android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp"
                 android:layout_marginRight="4dp"
                 android:layout_marginBottom="2dp"
-                android:layout_marginTop="2dp">
+                android:background="@drawable/ground_details"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Service :"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_facility"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+
             </LinearLayout>
 
-            <Button
-                android:id="@+id/qqqqqq"
+            <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="12dp"
-                android:background="@drawable/btn_shap_singup"
-                android:text="@string/reservation"
-                android:textAllCaps="true"
-                android:textColor="@color/colorPrimary" />
+                android:layout_marginLeft="4dp"
+                android:layout_marginTop="2dp"
+                android:layout_marginRight="4dp"
+                android:layout_marginBottom="2dp"
+                android:background="@drawable/ground_details"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="8dp"
+                    android:fontFamily="@font/indie_flower"
+                    android:text="Rules :"
+                    android:textColor="@android:color/white"
+                    android:textSize="22sp" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rec_rule"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_centerHorizontal="true"
+                android:orientation="horizontal"
+                android:padding="8dp">
+
+                <Button
+                    android:id="@+id/rev"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_shap_singup"
+                    android:text="RESERVATION"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary" />
+
+                <Button
+                    android:id="@+id/Comments"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_shap_singn"
+                    android:text="Comments"
+                    android:textAllCaps="true"
+                    android:textColor="@android:color/white" />
+
+                <Button
+                    android:id="@+id/maps"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_shap_singup"
+                    android:text="MAPS"
+                    android:textAllCaps="true"
+                    android:textColor="@color/colorPrimary" />
+            </LinearLayout>
 
         </LinearLayout>
     </ScrollView>

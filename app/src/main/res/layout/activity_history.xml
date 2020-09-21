@@ -23,21 +23,25 @@
                 android:layout_width="38dp"
                 android:layout_height="38dp"
                 android:src="@drawable/backward" />
+
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:paddingLeft="8dp"
-                android:textStyle="bold"
                 android:text="@string/history"
+                android:textColor="@android:color/white"
                 android:textSize="18sp"
-                android:textColor="@android:color/white" />
+                android:textStyle="bold" />
         </androidx.appcompat.widget.Toolbar>
 
-        <ListView
-            android:id="@+id/listhis"
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/lishis"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            tools:ignore="InvalidId" />
+            android:orientation="vertical"
+            android:paddingLeft="4dp"
+            android:paddingTop="4dp"
+            android:paddingRight="4dp" />
     </LinearLayout>
 </RelativeLayout>

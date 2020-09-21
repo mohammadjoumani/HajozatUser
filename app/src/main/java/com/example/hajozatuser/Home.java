@@ -7,30 +7,57 @@ import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.example.hajozatuser.Adapter.PagerAdapter;
+import com.example.hajozatuser.Adapter.FavHisAdapter;
+import com.example.hajozatuser.Adapter.HotelsAdpter;
 import com.example.hajozatuser.Common.Common;
+import com.example.hajozatuser.Interface.ApiInterafce;
+import com.example.hajozatuser.Model.FavHis;
+import com.example.hajozatuser.Model.Hotels;
+import com.example.hajozatuser.Remote.RetrofitCient;
 import com.google.android.material.navigation.NavigationView;
 import com.google.android.material.tabs.TabLayout;
 import com.squareup.picasso.Picasso;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBarDrawerToggle;
+import androidx.appcompat.widget.SearchView;
 import androidx.core.view.GravityCompat;
+import androidx.fragment.app.Fragment;
+import androidx.navigation.NavController;
+import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.drawerlayout.widget.DrawerLayout;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.navigation.ui.NavigationUI;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.hajozatuser.Common.Common;
+
+import java.util.List;
+
 import de.hdodenhof.circleimageview.CircleImageView;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class Home extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
 
+    private ApiInterafce Api;
+    private RetrofitCient retrofitCient;
+    private List<Hotels> hotelSearch;
+
+    private ListView listView;
+    private List<Hotels> hotelsList;
+    private HotelsAdpter adapter;
     // var for show message when click button to back
     private long backPressTime;
     private Toast backToast;
@@ -38,10 +65,12 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     // for set Data user on fun getDataUser
     private AppBarConfiguration mAppBarConfiguration;
     private TextView txtEmailUser, txtNameUser;
-    CircleImageView imgUser;
-    private TabLayout tabLayout;
-    private ViewPager viewPager;
+    private CircleImageView imgUser;
+    //    private TabLayout tabLayout;
+//    private ViewPager viewPager;
+//    private PagerAdapter adapter;
     private Toolbar toolbar;
+
 
     Dialog myDailog;
 
@@ -50,7 +79,7 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         super.onCreate( savedInstanceState );
         setContentView( R.layout.activity_home );
-         Log.d("aa", String.valueOf(this));
+
         toolbar = (Toolbar) findViewById( R.id.toolbar ); // for toolbar
         setSupportActionBar( toolbar );
 
@@ -63,9 +92,10 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         toggle.syncState();
         // Passing each menu ID as a set of Ids because each
         // menu should be considered as top level destinations.
-        mAppBarConfiguration = new AppBarConfiguration.Builder( )
+        mAppBarConfiguration = new AppBarConfiguration.Builder()
                 .setDrawerLayout( drawer )
                 .build();
+
 
         //Set Data of brand on navigation
         View headerView = navigationView.getHeaderView( 0 );
@@ -74,63 +104,79 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         imgUser = (CircleImageView) headerView.findViewById( R.id.imguser );
         getDataUser( txtNameUser, txtEmailUser, imgUser );
 
-        //for create tab and fragments
-        tabLayout = (TabLayout) findViewById( R.id.tablayout ); // for tablayout
-        viewPager = (ViewPager) findViewById( R.id.viewpager ); // for Viewpager
-        PagerAdapter adapter = new PagerAdapter( getSupportFragmentManager() );
-        adapter.addtab( new MyTab( "Home", CategoryFragment.newInstance( 1, "Home" ) ) );
-        adapter.addtab( new MyTab( "Top", CategoryFragment.newInstance( 2, "Top" ) ) );
-        viewPager.setAdapter( adapter );
-        tabLayout.setupWithViewPager( viewPager );
-        //  listener for tablayout
-//        tabLayout.addOnTabSelectedListener( new TabLayout.OnTabSelectedListener() {
-//            @Override
-//            public void onTabSelected(TabLayout.Tab tab) {
-//
-//
-//               Toast.makeText( Home.this, "select", Toast.LENGTH_SHORT ).show();
-//            }
-//
-//            @Override
-//            public void onTabUnselected(TabLayout.Tab tab) {
-//
-//               // Toast.makeText( Home.this, "unselected", Toast.LENGTH_SHORT ).show();
-//            }
-//
-//            @Override
-//            public void onTabReselected(TabLayout.Tab tab) {
-//
-//               // Toast.makeText( Home.this, "reselected", Toast.LENGTH_SHORT ).show();
-//            }
-//        } );
-//        // listener for Viewpager
-//        viewPager.addOnPageChangeListener( new ViewPager.OnPageChangeListener() {
-//            @Override
-//            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
-//
-//            }
-//
-//            @Override
-//            public void onPageSelected(int position) {
-//
-//            }
-//
-//            @Override
-//            public void onPageScrollStateChanged(int state) {
-//
-//            }
-//        } );
 
-//       NavController navController = Navigation.findNavController( this, R.id.nav_host_fragment );
-//        NavigationUI.setupActionBarWithNavController( this, navController, mAppBarConfiguration );
-//        NavigationUI.setupWithNavController( navigationView, navController );
+        listView = findViewById( R.id.list_view_home );
+        getHotells( listView );
+
+        listView.setOnItemClickListener( new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                // common.o=null;
+                Common.o = hotelsList.get( i );
+                startActivity( new Intent( Home.this, Details_hotel.class ) );
+
+                //getActivity().finish();// for finsh this activity and go to activity home
+            }
+        } );
+        /*for create tab and fragments
+        start for tablayout and viewPager setting
+         */
+//        tabLayout = (TabLayout) findViewById( R.id.tablayout ); // for tablayout
+//        viewPager = (ViewPager) findViewById( R.id.viewpager ); // for Viewpager
+//        adapter = new PagerAdapter( getSupportFragmentManager() );
+
+//        //Add  fragment
+//        adapter.AddFragment( new home_fragment(), "Home" );
+//        adapter.AddFragment( new top_fragment(), "Top" );
+
+//        viewPager.setAdapter( adapter );
+//        tabLayout.setupWithViewPager( viewPager );
+
+
+        /*for create tab and fragments
+        End for tablayout and viewPager setting
+         */
+
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) { // for show icon search on toolbar
+    public boolean onCreateOptionsMenu(Menu menu) {
+
+        // for show icon search on toolbar
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate( R.menu.home, menu );
+        SearchView searchView = (SearchView) menu.findItem( R.id.search_menu ).getActionView();
+        searchView.setSubmitButtonEnabled( true );
+        searchView.setOnQueryTextListener( new SearchView.OnQueryTextListener() {
+            @Override
+
+            public boolean onQueryTextSubmit(String query) {
+                searchHotel( query.toLowerCase() );
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        } );
+
+        searchView.setOnCloseListener( new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                adapter = new HotelsAdpter( Home.this, hotelsList );
+                listView.setAdapter( adapter );
+                return true;
+            }
+        } );
+
+
         return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        return super.onOptionsItemSelected( item );
     }
 
     @Override
@@ -141,12 +187,14 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
 
         if (id == R.id.About)
             startActivity( new Intent( Home.this, About.class ) );
+        if (id == R.id.topHotels)
+            startActivity( new Intent( Home.this, topStar.class ) );
         else if (id == R.id.history)
             startActivity( new Intent( Home.this, History.class ) );
         else if (id == R.id.favourite)
             startActivity( new Intent( Home.this, favourite.class ) );
-        else if (id==R.id.profile){
-            startActivity( new Intent( Home.this, Profile.class  ) );
+        else if (id == R.id.profile) {
+            startActivity( new Intent( Home.this, Profile.class ) );
         }
 
         DrawerLayout drawer = (DrawerLayout) findViewById( R.id.drawer_layout );
@@ -157,16 +205,23 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
     // fun for get Data for user signin
     public void getDataUser(TextView txtNameUser, TextView txtEmailUser, CircleImageView imgUser) {
         txtNameUser.setText( Common.user.getName() );
+        Log.d( "nameUser", Common.user.getName() );
         txtEmailUser.setText( Common.user.getEmail() );
         if (Common.user.getImage_Path() != null) {
 
+            if (Common.user.getImage_Path() != null) {
 
-            if (Common.user.getImage_Path().contains( "drive" )) {
+                if (Common.user.getImage_Path().contains( "drive" ))
+                    Picasso.get().load( Common.user.getImage_Path() ).into( imgUser );
+                else
+                    Picasso.get().load( Common.BASE_URL + "photos/" + Common.user.getImage_Path() ).into( imgUser );
+            } else if (Common.user.getImage_Path() == null)
 
-                Picasso.get().load( Common.user.getImage_Path() ).into( imgUser );
-            }
+                imgUser.setImageResource( R.drawable.user1 );
+
         }
     }
+
     @Override
     public void onBackPressed() { // function for show message when click button to back
 
@@ -180,5 +235,47 @@ public class Home extends AppCompatActivity implements NavigationView.OnNavigati
         }
         backPressTime = System.currentTimeMillis();
     }
+
+
+    private void searchHotel(String query) {
+        Api = retrofitCient.Api;
+        Api.getHotelSearch( Common.getToken(), query ).enqueue( new Callback<List<Hotels>>() {
+            @Override
+            public void onResponse(Call<List<Hotels>> call, Response<List<Hotels>> response) {
+                hotelSearch = response.body();
+                adapter = new HotelsAdpter( Home.this, hotelSearch );
+                listView.setAdapter( adapter );
+//                listView.getAdapter().notify();
+                //   Toast.makeText( Home.this, hotelSearch.get(0).getHotel_name(), Toast.LENGTH_SHORT ).show();
+
+            }
+
+            @Override
+            public void onFailure(Call<List<Hotels>> call, Throwable t) {
+
+            }
+        } );
+        //                Toast.makeText( Home.this, "Sorry .... !", Toast.LENGTH_SHORT ).show();
+    }
+
+    private void getHotells(ListView listView) {
+        retrofitCient = RetrofitCient.getINSTANCE();
+        Api = retrofitCient.Api;
+        Api.getHotels( Common.getToken() ).enqueue( new Callback<List<Hotels>>() {
+            @Override
+            public void onResponse(Call<List<Hotels>> call, Response<List<Hotels>> response) {
+
+                hotelsList = response.body();
+                adapter = new HotelsAdpter( getApplicationContext(), hotelsList );
+                listView.setAdapter( adapter );
+            }
+
+            @Override
+            public void onFailure(Call<List<Hotels>> call, Throwable t) {
+
+            }
+        } );
+    }
+
 }
 

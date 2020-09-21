@@ -16,6 +16,7 @@ import com.example.hajozatuser.Common.Common;
 import com.example.hajozatuser.Interface.ApiInterafce;
 import com.example.hajozatuser.Model.User;
 import com.example.hajozatuser.Remote.RetrofitCient;
+import com.google.android.material.snackbar.Snackbar;
 import com.google.android.material.textfield.TextInputEditText;
 
 import retrofit2.Call;
@@ -25,7 +26,8 @@ import retrofit2.Response;
 public class singin extends AppCompatActivity {
     private TextInputEditText txtEmail, txtPassword;
     private ApiInterafce Api;
-    MainActivity mainActivity=new MainActivity();
+    private RetrofitCient retrofitCient;
+    MainActivity mainActivity = new MainActivity();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,26 +54,35 @@ public class singin extends AppCompatActivity {
                 missField();
                 if (Common.isConnectionToInternet( singin.this ))
                     signin( txtEmail.getText().toString(), txtPassword.getText().toString() );
-
+                else {
+                    Snackbar snackbar = Snackbar.make( findViewById( R.id.layout_singin ), "No Internet Connection", Snackbar.LENGTH_LONG );
+                    snackbar.setAction( "RETRY", new View.OnClickListener() {
+                        @Override
+                        public void onClick(View view) {
+                            // write my code
+                        }
+                    } );
+                    snackbar.show();
+                }
 
             }
         } );
     }
 
     private void signin(String email, String password) {
-        RetrofitCient retrofitCient = RetrofitCient.getINSTANCE();
+        retrofitCient = RetrofitCient.getINSTANCE();
         Api = retrofitCient.Api;
         Api.LoginUser( email, password )
                 .enqueue( new Callback<User>() {
                     @Override
                     public void onResponse(Call<User> call, Response<User> response) {
                         Common.user = response.body();
-                        
+
                         // Log.d("user", String.valueOf( Common.user.getEmail() ));
                         if (Common.user.getEmail() == null || Common.user.getPassword() == null) {
 
                             //Log.d( "user", String.valueOf( true ) );
-                             Toast.makeText( singin.this, "Email or Password is wronge ..! ", Toast.LENGTH_SHORT ).show();
+                            Toast.makeText( singin.this, "Email or Password is wronge ..! ", Toast.LENGTH_SHORT ).show();
 
                         } else {
 

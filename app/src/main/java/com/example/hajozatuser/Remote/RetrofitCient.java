@@ -10,7 +10,7 @@ import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitCient {//10.0.2.2 //192.168.1.106
-    private static final String BASE_URL = "http://192.168.1.106/User/";
+    private static final String BASE_URL = "http://192.168.43.32/Hajozat/User/";
     public static ApiInterafce Api;
     private static RetrofitCient INSTANCE;
 
